@@ -1,4 +1,3 @@
-
 // Author : Kumar Akashdeep
 // Github : https://github.com/kadeep47
 
@@ -65,12 +64,13 @@ void solve()
     cin >> v;
 
     int i = 0;
-    while (i < n)
+    while (i < n )
     {
+       if(i == n) flag == 1;
         sort(v.begin() + i, v.begin() + i + b);
-        i = min(n, i + b);
+        i = min(n-1, i + b);
     }
-    cout << v << endl;
+    cout << v;
 }
 
 int32_t main()

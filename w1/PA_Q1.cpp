@@ -18,7 +18,7 @@ using namespace std;
 #define st string
 #define ld long double
 #define pb push_back
-#define vi vector<int>
+#define vi vector<ll>
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
