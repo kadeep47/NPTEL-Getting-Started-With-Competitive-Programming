@@ -54,23 +54,37 @@ void precompute() {}
 
 void solve()
 {
-    int cnt = 0;
-    int flag = 0;
-    int n;
-    cin >> n;
-    int b;
-    cin >> b;
-    vi v(n);
-    cin >> v;
 
-    int i = 0;
-    while (i < n )
+    int n, m;
+    cin >> n >> m;
+
+    int temp;
+    vector<int> A;
+    for (int i = 0; i < n; i++)
     {
-       if(i == n) flag == 1;
-        sort(v.begin() + i, v.begin() + i + b);
-        i = min(n-1, i + b);
+        cin >> temp;
+        A.push_back(temp);
     }
-    cout << v;
+
+    for (int i = 0; i < n; i += m)
+    {
+        if (A.begin() + i + m > A.end())
+        {
+            sort(A.begin() + i, A.end());
+        }
+        else
+        {
+            sort(A.begin() + i, A.begin() + i + m);
+        }
+    }
+
+    for (int i = 0; i < A.size(); i++)
+    {
+        if (i != A.size() - 1)
+            cout << A[i] << " ";
+        else
+            cout << A[i];
+    }
 }
 
 int32_t main()

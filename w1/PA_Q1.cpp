@@ -2,12 +2,11 @@
 // Author : Kumar Akashdeep
 // Github : https://github.com/kadeep47
 
-// Problem : 
-// Objective : 
+// Problem :
+// Objective :
 
 // Time Complexity :
 // space Complexity :
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,7 +21,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
-#define deb(x) cout<<#x<<x<<endl;
+#define deb(x) cout << #x << x << endl;
 
 #define PI 3.14159265359
 #define inf 9e18
@@ -56,25 +55,28 @@ void precompute() {}
 
 void solve()
 {
-    int cnt = 0;
-    int flag = 0;
-    int n;    cin >> n;
-    int m ;     cin >> m;
-
-    vi vn(n);  cin >> vn;
-    vi vm(m); cin >> vm;
-
-    int yudi = accumulate(all(vn),0);
-    int duro = accumulate(all(vm),0);
-
-    if(yudi == duro ){
-        cout << "Draw";
-    }else if(yudi > duro) {
-        cout << "Yudhisthira";
-    }else{
-        cout << "Duryodhana";
+    int n, m;
+    cin >> n >> m;
+    vector<int> y(n), d(m);
+    int y1 = 0, d1 = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> y[i];
+        y1 += y[i];
     }
-    cout <<endl;
+    for (int i = 0; i < m; i++)
+    {
+        cin >> d[i];
+        d1 += d[i];
+    }
+    if (y1 > d1)
+    {
+        cout << "Yudhisthira" << endl;
+    }
+    else if (d1 == y1)
+        cout << "Draw" << endl;
+    else
+        cout << "Duryodhana" << endl;
 }
 
 int32_t main()
