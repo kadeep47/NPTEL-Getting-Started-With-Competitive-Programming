@@ -2,12 +2,11 @@
 // Author : Kumar Akashdeep
 // Github : https://github.com/kadeep47
 
-// Problem : 
-// Objective : 
+// Problem :
+// Objective :
 
 // Time Complexity :
 // space Complexity :
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,7 +21,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
-#define deb(x) cout<<#x<<x<<endl;
+#define deb(x) cout << #x << x << endl;
 
 #define PI 3.14159265359
 #define inf 9e18
@@ -58,8 +57,28 @@ void solve()
 {
     int cnt = 0;
     int flag = 0;
-    int n;    cin >> n;
-    vi v(n);  cin >> v;
+    int n;
+    cin >> n;
+    int  q ;cin >> q;
+    vi v(n);
+    cin >> v;
+
+
+
+// cout << n << " -- "<< q<< " -- " << v<<endl;
+    
+    while(q--){
+        int a; int b ; cin >>a >> b;
+        // cout << a<< " " << b  << " ";
+        auto it = find(v.rbegin(),v.rend(),b);
+        if(it != v.rend()){
+            auto itt = find(it,v.rend(),a);
+            if(itt != v.rend()){
+                cnt++;
+            }
+        }
+    }
+
     cout << cnt << endl;
 }
 
@@ -70,7 +89,7 @@ int32_t main()
     precompute();
     int T = 1;
 
-    // cin >> T;
+    cin >> T;
 
     for (int i = 1; i <= T; i++)
     {
