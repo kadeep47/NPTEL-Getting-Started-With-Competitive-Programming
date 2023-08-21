@@ -233,6 +233,23 @@ void solve()
         {
             fin.push_back(ea.val);
             i++;
+        }else if (ea.val == eb.val){
+            int tempi = i;
+            int tempj = j;
+            ele base1 = va[i];
+            ele base2 = vb[j];
+            while(base1.val == base2.val){
+                fin.push_back(base1.val);
+                tempi++;
+                tempj++;
+                base1 = va[tempi];
+                base2 = vb[tempj];
+            }
+            if(base1.val > base2.val){
+                i = tempi;
+            }else{
+                j = tempj;
+            }
         }
         else
         {
