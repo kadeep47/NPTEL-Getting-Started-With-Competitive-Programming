@@ -78,14 +78,14 @@ void solve()
 
         m[a[i][0]] = a[i][1];
 
-        set<int>::iterator j = right.find(a[i][0]);
+        auto j = right.find(a[i][0]);
 
         if (j == right.end())
             left.insert(a[i][0]);
         else
             right.erase(j);
 
-        set<int>::iterator k = left.find(a[i][1]);
+        auto k = left.find(a[i][1]);
 
         if (k == left.end())
             right.insert(a[i][1]);
@@ -95,11 +95,13 @@ void solve()
 
     res[0] = *(left.begin());
 
-    for (int i = 0; i < n - 2; i++)
+    for (int i = 0; i < n - 2; i++){
         res[i + 2] = m[res[i]];
+    }
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++){
         cout << res[i] << " ";
+    }
 
     cout << endl;
 }
