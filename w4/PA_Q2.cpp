@@ -1,12 +1,4 @@
 
-// Author : Kumar Akashdeep
-// Github : https://github.com/kadeep47
-
-// Problem :
-// Objective :
-
-// Time Complexity :
-// space Complexity :
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,7 +45,7 @@ const int N = 1e6 + 1;
 
 void precompute() {}
 
-int bfs(vector<vector<int>> &grid,vector<vector<int>> &vis , int n, int m, int r, int c)
+int bfs(vector<vector<int>> &grid, vector<vector<int>> &vis, int n, int m, int r, int c)
 {
 
     cout << endl;
@@ -62,7 +54,6 @@ int bfs(vector<vector<int>> &grid,vector<vector<int>> &vis , int n, int m, int r
 
     q.push({{r, c}, 1});
     int area = grid[r][c];
-    // cout << area << " "<<r<< " " <<  c<< endl;
 
     int dirx[] = {-1, 0, 1, 0};
     int diry[] = {0, 1, 0, -1};
@@ -78,31 +69,23 @@ int bfs(vector<vector<int>> &grid,vector<vector<int>> &vis , int n, int m, int r
             int nr = r + dirx[i];
             int nc = c + diry[i];
 
-            if (nr >= 0 && nr < n && nc >= 0 && nc < m && vis[nr][nc]==0 && grid[nr][nc] != 0)
+            if (nr >= 0 && nr < n && nc >= 0 && nc < m && vis[nr][nc] == 0 && grid[nr][nc] != 0)
             {
                 vis[nr][nc] = 1;
                 area += grid[nr][nc];
-                // cout << area << " "<<nr<< " " <<  nc<< endl;
+
                 q.push({{nr, nc}, area});
             }
         }
     }
 
-    // cout << "aread   " << area <<endl;
     return area;
 }
 
 int find(vector<vector<int>> &grid, int n, int m)
 {
     int ans = 0;
-    vector<vector<int>> vis (n,vector <int> (m,0));
-
-    // cout << endl;
-    // for(auto t : vis){
-    //     for(auto it : t){
-    //         cout << it << " ";
-    //     }cout <<endl;
-    // }
+    vector<vector<int>> vis(n, vector<int>(m, 0));
 
     rep(i, 0, n)
     {
@@ -110,9 +93,9 @@ int find(vector<vector<int>> &grid, int n, int m)
         {
             if (grid[i][j] != 0)
             {
-                int temp =  bfs(grid,vis, n, m, i, j);
-                // cout << "temp " << " "  << temp <<endl;
-                ans = max(ans,temp);
+                int temp = bfs(grid, vis, n, m, i, j);
+
+                ans = max(ans, temp);
             }
         }
     }
@@ -142,12 +125,6 @@ void solve()
         grid.push_back(v);
     }
 
-    // for(auto t : grid){
-    //     for(auto it : t){
-    //         cout << it << " ";
-    //     }cout <<endl;
-    // }
-
     cnt = find(grid, n, m);
     cout << cnt << endl;
 }
@@ -159,11 +136,9 @@ int32_t main()
     precompute();
     int T = 1;
 
-    // cin >> T;
-
     for (int i = 1; i <= T; i++)
     {
-        // cout << "Case #" << i << ": ";
+
         solve();
     }
     return 0;

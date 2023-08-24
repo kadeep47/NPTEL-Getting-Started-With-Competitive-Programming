@@ -54,14 +54,56 @@ const int N = 1e6 + 1;
 
 void precompute() {}
 
+
+
 void solve()
 {
-    int cnt = 0;
-    int flag = 0;
-    int n;    cin >> n;
-    vi v(n);  cin >> v;
-    cout << cnt << endl;
+    int n;
+    cin >> n;
+
+    vector<vector<int>> a(n, vector<int>(2));
+
+    for (int i = 0; i < n; i++)
+        cin >> a[i][0] >> a[i][1];
+
+    map<int, int> m;
+    set<int> left;
+    set<int> right;
+    vector<int> res(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i][0] == 0)
+            res[1] = a[i][1];
+
+        m[a[i][0]] = a[i][1];
+
+        set<int>::iterator j = right.find(a[i][0]);
+
+        if (j == right.end())
+            left.insert(a[i][0]);
+        else
+            right.erase(j);
+
+        set<int>::iterator k = left.find(a[i][1]);
+
+        if (k == left.end())
+            right.insert(a[i][1]);
+        else
+            left.erase(k);
+    }
+
+    res[0] = *(left.begin());
+
+    for (int i = 0; i < n - 2; i++)
+        res[i + 2] = m[res[i]];
+
+    for (int i = 0; i < n; i++)
+        cout << res[i] << " ";
+
+    cout << endl;
 }
+
 
 int32_t main()
 {
