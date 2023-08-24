@@ -2,12 +2,11 @@
 // Author : Kumar Akashdeep
 // Github : https://github.com/kadeep47
 
-// Problem : 
-// Objective : 
+// Problem :
+// Objective :
 
 // Time Complexity :
 // space Complexity :
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,7 +21,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
-#define deb(x) cout<<#x<<x<<endl;
+#define deb(x) cout << #x << x << endl;
 
 #define PI 3.14159265359
 #define inf 9e18
@@ -54,12 +53,102 @@ const int N = 1e6 + 1;
 
 void precompute() {}
 
+int bfs(vector<vector<int>> &grid,vector<vector<int>> &vis , int n, int m, int r, int c)
+{
+
+    cout << endl;
+    vis[r][c] = 1;
+    queue<pair<pair<int, int>, int>> q;
+
+    q.push({{r, c}, 1});
+    int area = grid[r][c];
+    // cout << area << " "<<r<< " " <<  c<< endl;
+
+    int dirx[] = {-1, 0, 1, 0};
+    int diry[] = {0, 1, 0, -1};
+
+    while (!q.empty())
+    {
+        int r = q.front().first.first;
+        int c = q.front().first.second;
+        q.pop();
+
+        for (int i = 0; i < 4; i++)
+        {
+            int nr = r + dirx[i];
+            int nc = c + diry[i];
+
+            if (nr >= 0 && nr < n && nc >= 0 && nc < m && vis[nr][nc]==0 && grid[nr][nc] != 0)
+            {
+                vis[nr][nc] = 1;
+                area += grid[nr][nc];
+                // cout << area << " "<<nr<< " " <<  nc<< endl;
+                q.push({{nr, nc}, area});
+            }
+        }
+    }
+
+    // cout << "aread   " << area <<endl;
+    return area;
+}
+
+int find(vector<vector<int>> &grid, int n, int m)
+{
+    int ans = 0;
+    vector<vector<int>> vis (n,vector <int> (m,0));
+
+    // cout << endl;
+    // for(auto t : vis){
+    //     for(auto it : t){
+    //         cout << it << " ";
+    //     }cout <<endl;
+    // }
+
+    rep(i, 0, n)
+    {
+        rep(j, 0, m)
+        {
+            if (grid[i][j] != 0)
+            {
+                int temp =  bfs(grid,vis, n, m, i, j);
+                // cout << "temp " << " "  << temp <<endl;
+                ans = max(ans,temp);
+            }
+        }
+    }
+
+    return ans;
+}
+
 void solve()
 {
     int cnt = 0;
     int flag = 0;
-    int n;    cin >> n;
-    vi v(n);  cin >> v;
+    int n;
+    cin >> n;
+    int m;
+    cin >> m;
+
+    vector<vector<int>> grid;
+    rep(i, 0, n)
+    {
+        vector<int> v;
+        rep(i, 0, m)
+        {
+            int x;
+            cin >> x;
+            v.push_back(x);
+        }
+        grid.push_back(v);
+    }
+
+    // for(auto t : grid){
+    //     for(auto it : t){
+    //         cout << it << " ";
+    //     }cout <<endl;
+    // }
+
+    cnt = find(grid, n, m);
     cout << cnt << endl;
 }
 
