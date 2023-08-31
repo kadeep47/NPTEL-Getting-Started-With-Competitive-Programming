@@ -1,13 +1,11 @@
- 
 // Author : Kumar Akashdeep
 // Github : https://github.com/kadeep47
 
-// Problem : 
-// Objective : 
+// Problem :
+// Objective :
 
 // Time Complexity :
 // space Complexity :
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,7 +20,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
-#define deb(x) cout<<#x<<x<<endl;
+#define deb(x) cout << #x << x << endl;
 
 #define PI 3.14159265359
 #define inf 9e18
@@ -53,8 +51,6 @@ constexpr int MOD = 1e9 + 7, mod = 998244353;
 const int N = 1e6 + 1;
 
 void precompute() {}
-
-
 
 void solve()
 {
@@ -95,17 +91,18 @@ void solve()
 
     res[0] = *(left.begin());
 
-    for (int i = 0; i < n - 2; i++){
+    for (int i = 0; i < n - 2; i++)
+    {
         res[i + 2] = m[res[i]];
     }
 
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++)
+    {
         cout << res[i] << " ";
     }
 
     cout << endl;
 }
-
 
 int32_t main()
 {
