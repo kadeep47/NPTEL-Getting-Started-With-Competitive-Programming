@@ -53,61 +53,85 @@ const int N = 1e6 + 1;
 
 void precompute() {}
 
-vector<int> parent;
-vector<int> size;
+// vector<int> parent;
+// vector<int> size;
 
-int findp(int a){
-    if(a == parent[a]) return a;
-    return parent[a] = findp(parent[a]);
-}
+// int findp(int a)
+// {
+//     if (a == parent[a])
+//         return a;
+//     return parent[a] = findp(parent[a]);
+// }
 
-void unionbysize(int a ,int b){
-    a = findp(a);
-    b = findp(b);
-    if(a!=b){
-        if(a>b) swap(a,b);
-        parent[b]=a;
-        size[a]+=size[b];
+// void unionbysize(int a, int b)
+// {
+//     a = findp(a);
+//     b = findp(b);
+//     if (a != b)
+//     {
+//         if (a > b)
+//             swap(a, b);
+//         parent[b] = a;
+//         size[a] += size[b];
+//     }
+// }
+
+void dfs(vector<vector<int>> adj, vector <int> &vis, int node){
+    vis[node] = 1;
+    rep(i,0,adj[node].size()){
+        if(vis[adj[node][i]] == 0) dfs(adj,vis,adj[node][i]);
     }
 }
 
 void solve()
 {
-    int cnt = 0;
     int flag = 0;
     int n;
     cin >> n;
     int m;
     cin >> m;
 
-    vector<vector<int>> edge;
-    rep(i, 0, n)
+    // cout << n  <<  " "<< m <<endl;
+
+    vector<vector<int>> adj(n);
+    rep(i, 0, m)
     {
         int x, y;
         cin >> x >> y;
-        edge.push_back({x-1, y-1});
+        x--;
+        y--;
+        // cout << x  << " " << y <<  endl;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
     }
 
-    parent.resize(n);
-    size.resize(n);
+    // for(auto it : adj){
+    //     for(auto itt : it){
+    //         cout << itt << " " ;
+    //     }cout <<endl;
+    // }
+
+    // rep(i,0,n){
+    //     cout << i << "  --  " ;
+    //     rep(j,0,adj[i].size()){
+    //         cout << adj[i][j] <<  " ";
+    //     }cout<<endl;
+    // }
+
+    vector<int> vis(n, 0);
+
+    int cnt = 0;
 
     rep(i, 0, n)
     {
-        parent[i] = i;
-        size[i] = 0;
+        if (vis[i] == 0)
+        {
+            dfs(adj, vis, i);
+            cnt++;
+        }
     }
 
-    for (auto it : edge)
-    {
-        unionbysize(it[0], it[1]);
-    }
-    int ans = 0;
-
-    rep(i,0,n){
-        if(parent[i] == i) ans++;
-    }
-
-    cout << ans ;
+    cout << cnt;
 }
 
 int32_t main()
