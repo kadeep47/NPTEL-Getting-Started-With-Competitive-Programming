@@ -2,12 +2,11 @@
 // Author : Kumar Akashdeep
 // Github : https://github.com/kadeep47
 
-// Problem : 
-// Objective : 
+// Problem :
+// Objective :
 
 // Time Complexity :
 // space Complexity :
-
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,7 +21,7 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
-#define deb(x) cout<<#x<<x<<endl;
+#define deb(x) cout << #x << x << endl;
 
 #define PI 3.14159265359
 #define inf 9e18
@@ -56,11 +55,60 @@ void precompute() {}
 
 void solve()
 {
-    int cnt = 0;
-    int flag = 0;
-    int n;    cin >> n;
-    vi v(n);  cin >> v;
-    cout << cnt << endl;
+
+    int n;
+    cin >> n;
+    int m;
+    cin >> m;
+
+    vector<vector<int>> edges(n);
+    // cout << n << " "  << m <<endl;
+
+    rep(i, 0, m)
+    {
+        int x, y;
+        cin >> x >> y;
+        if (x == y)
+            continue;
+        edges[x - 1].push_back(y - 1);
+        edges[y - 1].push_back(x - 1);
+    }
+
+    int i = 0;
+
+    // for(auto it : edges){
+    //     cout << i+1  << " -- " ;
+    //     for(auto itt :  it) cout << itt+1 << "  ";
+    //     cout <<endl;
+    //     i++;
+    // }
+
+
+    vector<int> vis(n, 0);
+    priority_queue<int, vector<int>, greater<int>> q;
+    q.push(0);
+    vis[0] = 1 ;
+
+    vector<int> ans;
+    while (!q.empty())
+    {
+        int node = q.top();
+        q.pop();
+
+        ans.push_back(node);
+        for (auto it : edges[node])
+        {
+            if (vis[it] == 0)
+            {
+                q.push(it);
+                vis[it] = 1;
+            }
+        }
+    }
+
+    rep(i, 0, ans.size()) ans[i]++;
+    // ans.resize(distance(ans.begin(), unique(ans.begin(), ans.end())));
+    cout << ans;
 }
 
 int32_t main()
