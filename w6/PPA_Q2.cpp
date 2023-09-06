@@ -1,4 +1,13 @@
 
+// Author : Kumar Akashdeep
+// Github : https://github.com/kadeep47
+
+// Problem : 
+// Objective : 
+
+// Time Complexity :
+// space Complexity :
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -13,12 +22,10 @@ using namespace std;
 #define all(x) x.begin(), x.end()
 #define rep(i, a, n) for (int i = a; i < n; ++i)
 #define drep(i, a, n) for (int i = n; i > a; --i)
-#define deb(x) cout << #x << x << endl;
+#define deb(x) cout<<#x<<x<<endl;
 
 #define PI 3.14159265359
 #define inf 9e18
-
-typedef pair<int, int> Pair;
 
 template <typename T>
 ostream &operator<<(ostream &output, const vector<T> &data)
@@ -49,52 +56,11 @@ void precompute() {}
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int src;
-    cin >> src;
-
-    vector<vector<pair<int, int>>> v(n);
-    vector<int> vis(n, 0);
-    rep(i, 0, n)
-    {
-        int edgecnt;
-        cin >> edgecnt;
-        rep(j, 0, edgecnt)
-        {
-            int x, w;
-            cin >> x >> w;
-            v[i].push_back({w, x});
-        }
-    }
-
-    vector<int> dis(n, inf);
-    dis[src] = 0;
-
-    priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
-
-    pq.push({0,src});
-
-    while (!pq.empty())
-    {
-        int node = pq.top().second;
-        int wgt = pq.top().first;
-        pq.pop();
-
-        vis[node] = true;
-
-        for (auto it : v[node])
-            if ((wgt + (it.first)) < dis[it.second])
-            {
-                dis[it.second] = wgt + (it.first);
-                pq.push({dis[it.second], it.second});
-            }
-    }
-
-    cout << dis ;
-   int ans = *max_element(all(dis));
-
-   cout << (ans == inf) ? -1 : ans;
+    int cnt = 0;
+    int flag = 0;
+    int n;    cin >> n;
+    vi v(n);  cin >> v;
+    cout << cnt << endl;
 }
 
 int32_t main()
@@ -103,8 +69,12 @@ int32_t main()
     cin.tie(NULL);
     precompute();
     int T = 1;
+
+    // cin >> T;
+
     for (int i = 1; i <= T; i++)
     {
+        // cout << "Case #" << i << ": ";
         solve();
     }
     return 0;
