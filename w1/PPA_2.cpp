@@ -55,25 +55,17 @@ void precompute() {}
 
 void solve()
 {
-    int cnt = 0;
-    int flag = 0;
+    // IT'S EASY TO OBSERVE THAT WHENEVER YOU GET A NUMBER THAT IS A POWER OF TWO. THEN IT'S POSSIBLE FOR THE FLY TO REACH ALL THE CUPS.
+    // TRY TO SOLVE IT FOR THE CASES 1: YES, 2:YES, 6:NO, 8:YES, 15:NO, 16:YES
     int n;
-    cin >> n;
-    // update is required as there is no k value
-    // int k ;     cin >> k;
-    // if(n%k == 0) cout << "NO";
-    // else cout <<"YES";
-
-    // but in  current condition
-    if (n == 1)
-    {
-        cout << "YES";
+    cin>>n;
+    int pwr = log2(n);
+    int nn = 1<<pwr;
+    if(nn == n){
+        cout<<"YES"<<endl;
+    }else{
+        cout<<"NO"<<endl;
     }
-    else
-    {
-        cout << "NO";
-    }
-    cout << endl;
 }
 
 int32_t main()
